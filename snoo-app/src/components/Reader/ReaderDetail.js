@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Table } from "reactstrap";
 
 import "../../App.css";
 
@@ -29,7 +29,12 @@ export const ReaderDetail = (props) => {
 			 .catch(err => {
 			 	console.log(err);
 			 })
-	}, [obj])
+	}, [obj]);
+
+
+	const getMonthAndYear = (a) => {
+		console.log(typeof a)
+	}
 
 
 	return (
@@ -45,15 +50,16 @@ export const ReaderDetail = (props) => {
 						<p>{comments.length} comments</p>
 					</Col>
 				</Row>
+				<Table bordered dark>
+					<tbody>
 				{comments.map(com => (
-
-					<Row>
-						<Col>
-							{com.text}
-						</Col>
-					</Row>
-
+					<tr>
+					{com.text}
+					<td>created at {com.created_at}</td>
+					</tr>
 				))}
+					</tbody>
+				</Table>
 			</Container>
 		</div>
 	);

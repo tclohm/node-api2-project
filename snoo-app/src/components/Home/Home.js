@@ -6,7 +6,7 @@ export const Home = (props) => {
 
 	return (
 		<div>
-			<img src={chat} />
+			<img src={chat} alt="message wink" />
 		</div>
 	);
 };
