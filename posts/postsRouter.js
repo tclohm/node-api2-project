@@ -54,7 +54,7 @@ router.get("/:id/comments", (req, res) => {
 
 router.post("/", (req, res) => {
 	Posts.insert(req.body)
-	  .then(post => {
+	  	 .then(post => {
 	  	if (post) {
 	  		res.status(201)
 	  	       .json(post)
@@ -71,6 +71,7 @@ router.post("/", (req, res) => {
 
 router.post("/:id/comments", (req, res) => {
 	const { text } = req.body
+	console.log(text)
 	if (text) {
 		Posts.insertComment(req.body)
 			 .then(comment => {
