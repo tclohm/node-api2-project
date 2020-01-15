@@ -22,10 +22,10 @@ router.get("/:id", (req, res) => {
 		 .then(post => {
 		 	if (post) {
 		 		res.status(200)
-		 	    .json(posts)
+		 	       .json(post)
 		 	} else {
 		 		res.status(404)
-		 		.json({ errorMessage: "The post doesn't exist" })
+		 		   .json({ errorMessage: "The post doesn't exist" })
 		 	}
 		 })
 		 .catch(err => {
@@ -53,6 +53,7 @@ router.get("/:id/comments", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+	Posts.insert(req.body)
 	  .then(post => {
 	  	if (post) {
 	  		res.status(201)
@@ -69,7 +70,7 @@ router.post("/", (req, res) => {
 })
 
 router.post("/:id/comments", (req, res) => {
-	const { text } req.body
+	const { text } = req.body
 	if (text) {
 		Posts.insertComment(req.body)
 			 .then(comment => {
@@ -81,7 +82,7 @@ router.post("/:id/comments", (req, res) => {
 			 		   .json({ errorMessage: "The post with the ID does not exist" })
 			 	}
 			 })
-			 catch(err => {
+			 .catch(err => {
 			 	res.status(500)
 			 	   .json({ errorMessage: "Error posting new comment" })
 			 })
